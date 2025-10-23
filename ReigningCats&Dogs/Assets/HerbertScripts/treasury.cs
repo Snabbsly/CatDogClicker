@@ -38,7 +38,7 @@ public class ReturnLoot : MonoBehaviour
         LootGet();
     }
 
-    //Determines how 
+    //Determines how much loot you get when the soldier returns
     void LootGet()
     {
         int lootValue = Random.Range(1, 3);

@@ -3,10 +3,11 @@ using UnityEngine;
 public class ScrollButton : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    bool onScreen;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        onScreen = true;
     }
 
     // Update is called once per frame
@@ -14,14 +15,19 @@ public class ScrollButton : MonoBehaviour
     {
         
     }
+
     // Make it enable and disable the button
     public void slideIn()
     {
+        AlterValue();
         animator.SetTrigger("SlideIn");
-        animator.SetBool("OnScreenOrNot", false);
+        animator.SetBool("OnScreenOrNot", onScreen);
     }
-    public void slideout()
+  
+
+
+    void AlterValue()
     {
-        animator.SetBool("OnScreenOrNot", true) ;
+        onScreen = !onScreen;
     }
 }

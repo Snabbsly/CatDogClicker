@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ReturnLoot : MonoBehaviour
 {
-    string catGuard;
     public int lootingEffiency;
     int netWorth = 0;
     [SerializeField] TextMeshProUGUI treasuryText;
@@ -39,6 +38,7 @@ public class ReturnLoot : MonoBehaviour
         LootGet();
     }
 
+    //Determines how 
     void LootGet()
     {
         int lootValue = Random.Range(1, 3);

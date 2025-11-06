@@ -471,6 +471,7 @@ MonoBehaviour:
   hasLootSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   moveSpeed: 5
   hasLoot: 0
+  soldierSprites: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

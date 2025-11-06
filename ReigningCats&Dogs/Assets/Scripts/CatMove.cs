@@ -15,6 +15,7 @@ public class CatMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("bshdasdbijsab");
         if (other.CompareTag("Soilder"))
         {
             Debug.Log("Cat walked into collider");

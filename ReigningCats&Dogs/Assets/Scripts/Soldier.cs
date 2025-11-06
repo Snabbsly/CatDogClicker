@@ -5,7 +5,7 @@ public class Soldier : MonoBehaviour
     [SerializeField] Sprite hasNotLootSprite;
     [SerializeField] Sprite hasLootSprite;
 
-    [SerializeField] float moveSpeed = 10f;
+    public float moveSpeed = 10f;
     ReturnLoot king;
     [SerializeField] bool hasLoot = false;
 
@@ -25,13 +25,15 @@ public class Soldier : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (hasLoot)
+        if (!hasLoot)
         {
-            _rigidbody.linearVelocity = Vector2.left * moveSpeed;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            _rigidbody.linearVelocity = Vector2.right * moveSpeed;
         }
         else
         {
-            _rigidbody.linearVelocity = Vector2.right * moveSpeed;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            _rigidbody.linearVelocity = Vector2.left * moveSpeed;
         }
     }
 

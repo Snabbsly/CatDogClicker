@@ -25,7 +25,7 @@ public class King : MonoBehaviour
             StartCoroutine(SendTheTroops(troopType));
         }
     }
-
+    // Forces a delay between troops sent
     IEnumerator SendTheTroops(int troopType)
     {
         trainingTime = false;

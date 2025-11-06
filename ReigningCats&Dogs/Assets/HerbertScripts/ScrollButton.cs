@@ -10,13 +10,8 @@ public class ScrollButton : MonoBehaviour
         onScreen = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // Make it enable and disable the button
+    
+    // Slides in the menu so it can be seen, and makes it so that pressing the button pulls it back up
     public void slideIn()
     {
         AlterValue();

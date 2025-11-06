@@ -4,7 +4,7 @@ using UnityEngine;
 public class King : MonoBehaviour
 {
     ReturnLoot treasury;
-    bool trainingTime;
+    public bool trainingTime;
 
     // makes it so there is a short delay ao you can not send soldiers infinitely quickly
     void Start()
@@ -18,19 +18,19 @@ public class King : MonoBehaviour
     {
 
     }
-    public void KingsOrders(int troopType)
+    public void KingsOrders()
     {
         if (trainingTime == true)
         {
-            StartCoroutine(SendTheTroops(troopType));
+            Debug.Log("This works");
+            StartCoroutine(SendTheTroops());
         }
     }
     // Forces a delay between troops sent
-    IEnumerator SendTheTroops(int troopType)
+    IEnumerator SendTheTroops()
     {
         trainingTime = false;
         yield return new WaitForSeconds(0.5f);
-        treasury.sendSoldier(troopType);
         trainingTime = true;
     }
 }

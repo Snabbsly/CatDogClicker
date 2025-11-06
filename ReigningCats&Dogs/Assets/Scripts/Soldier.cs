@@ -6,7 +6,7 @@ public class Soldier : MonoBehaviour
     [SerializeField] Sprite hasLootSprite;
 
     [SerializeField] float moveSpeed = 10f;
-
+    ReturnLoot king;
     [SerializeField] bool hasLoot = false;
 
     [SerializeField] Sprite[] soldierSprites; //lägg in cat och hund sprites här yesyes
@@ -16,6 +16,7 @@ public class Soldier : MonoBehaviour
 
     private void Awake()
     {
+        king = Object.FindFirstObjectByType<ReturnLoot>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
 
@@ -43,6 +44,7 @@ public class Soldier : MonoBehaviour
         else if (other.CompareTag("Base")) // lägg in så att man får pengar 
         {
             Destroy(gameObject);
+            king.GetComponent<ReturnLoot>().LootGet();
         }
     }
 

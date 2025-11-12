@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class ReturnLoot : MonoBehaviour
 {
     public float lootingEffiency;
+    public float soldierSpeed;
     [SerializeField] int netWorth = 0;
     [SerializeField] TextMeshProUGUI treasuryText;
     [SerializeField] SoldierManager soldierManager;
@@ -22,20 +23,23 @@ public class ReturnLoot : MonoBehaviour
     string upgrade1Text;
     string upgrade2Text;
     string upgrade3Text;
+    AudioManager audioManager;
     void Start()
     {
+        soldierSpeed = 5;
         lootingEffiency = 1;
         treasuryText.text = "You have 0 Gold";
-        Upgrade1cost = 1000;
-        Upgrade2cost = 500;
-        Upgrade3cost = 2000;
+        Upgrade1cost = 100;
+        Upgrade2cost = 50;
+        Upgrade3cost = 200;
         TimeBetweenSpawns = 5.5f;
         soldier = FindAnyObjectByType<Soldier>();
-        upgrade1Text = "Makes soldiers more efficient at getting loot! costs " + Upgrade1cost + " Gold";
+        audioManager = FindAnyObjectByType<AudioManager>();
+        upgrade1Text = "Make soldiers more efficient at getting loot! costs " + Upgrade1cost + " Gold";
         upgradeButtonText[0].text = upgrade1Text;
-        upgrade2Text = "Sends out automatically soldiers to get loot! costs " + Upgrade2cost + " Gold";
+        upgrade2Text = "Send out soldiers automatically to get loot! costs " + Upgrade2cost + " Gold";
         upgradeButtonText[1].text = upgrade2Text;
-        upgrade3Text = "Makes the soldiers faster at getting loot! costs " + Upgrade3cost + " Gold";
+        upgrade3Text = "Make the soldiers faster at getting loot! costs " + Upgrade3cost + " Gold";
         upgradeButtonText[2].text = upgrade3Text;
     }
 
@@ -64,6 +68,7 @@ public class ReturnLoot : MonoBehaviour
         int lootValue = Random.Range(1, 3);
         lootValue = (int)(lootValue * 10 * lootingEffiency);
         netWorth += lootValue;
+        audioManager.PlaySound(1, 1);
         treasuryText.text = "You have " + netWorth.ToString() + " Gold";
         Debug.Log("My liege, i have returned with" + netWorth.ToString() + "Gold!");
     }
@@ -80,7 +85,7 @@ public class ReturnLoot : MonoBehaviour
                 StartCoroutine(Upgrade2cor());
                 Upgrade2cost = Upgrade2cost * 5;
                 TimeBetweenSpawns = TimeBetweenSpawns - 0.5f;
-                upgrade2Text = "Sends out automatically soldiers to get loot! costs " + Upgrade2cost + " Gold";
+                upgrade2Text = "Send out soldiers automatically to get loot! costs " + Upgrade2cost + " Gold";
                 upgradeButtonText[1].text = upgrade2Text;
             }
 
@@ -110,7 +115,7 @@ public class ReturnLoot : MonoBehaviour
             {
                 lootingEffiency += 0.2f;
                 Upgrade1cost = Upgrade1cost * 5;
-                upgrade1Text = "Makes soldiers more efficient at getting loot! costs " + Upgrade1cost + " Gold";
+                upgrade1Text = "Make soldiers more efficient at getting loot! costs " + Upgrade1cost + " Gold";
                 upgradeButtonText[0].text = upgrade1Text;
             }
 
@@ -124,16 +129,27 @@ public class ReturnLoot : MonoBehaviour
 
     public void Upgrade3()
     {
+        float speed = soldierSpeed;
+        Debug.Log(speed.ToString());
         if (netWorth >= Upgrade3cost)
         {
-            netWorth -= Upgrade3cost;
-            if (soldier.moveSpeed >= 15)
+
+
+
+            if (soldierSpeed <= 15)
             {
-                soldier.moveSpeed += 2;
+                netWorth -= Upgrade3cost;
+                soldierSpeed += 2;
                 Upgrade3cost = Upgrade3cost * 6;
-                upgrade3Text = "Makes the soldiers faster at getting loot! costs " + Upgrade3cost + " Gold";
+                upgrade3Text = "Make the soldiers faster at getting loot! costs " + Upgrade3cost + " Gold";
                 upgradeButtonText[2].text = upgrade3Text;
             }
+            else
+            {
+                upgrade3Text = "The Soldiers are Running as fast as they can!";
+                upgradeButtonText[2].text = upgrade3Text;
+            }
+
         }
         else
         {

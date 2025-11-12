@@ -5,11 +5,13 @@ public class King : MonoBehaviour
 {
     ReturnLoot treasury;
     public bool trainingTime;
+    AudioManager audioManager;
 
     // makes it so there is a short delay ao you can not send soldiers infinitely quickly
     void Start()
     {
         treasury = FindAnyObjectByType<ReturnLoot>();
+        audioManager = FindAnyObjectByType<AudioManager>();
         trainingTime = true;
     }
 
@@ -23,6 +25,7 @@ public class King : MonoBehaviour
         if (trainingTime == true)
         {
             Debug.Log("This works");
+            audioManager.PlaySound(0, 0);
             StartCoroutine(SendTheTroops());
         }
     }

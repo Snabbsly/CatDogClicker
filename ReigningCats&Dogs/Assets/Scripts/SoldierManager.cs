@@ -8,6 +8,12 @@ public class SoldierManager : MonoBehaviour
     [Header("Sprite par")]
     [SerializeField] Sprite[] hasNoLootSprites;
     [SerializeField] Sprite[] hasLootSprites;
+    ReturnLoot treasury;
+
+    void Start()
+    {
+        treasury = FindAnyObjectByType<ReturnLoot>();
+    }
 
     public void SpawnSoldier()
     {
@@ -16,13 +22,14 @@ public class SoldierManager : MonoBehaviour
             Debug.Log("This works");
 
             GameObject newSoldier = Instantiate(_soldier, transform.position, Quaternion.identity);
+
             Soldier soldier = newSoldier.GetComponent<Soldier>();
             if (soldier == null)
             {
                 Debug.LogWarning("lägg in soldier raaa");
                 return;
             }
-
+            soldier.moveSpeed = treasury.soldierSpeed;
             int r = Random.Range(0, hasNoLootSprites.Length);  // väljer random av no loot sprites 
 
             // Välj samma nummer för båda sprites

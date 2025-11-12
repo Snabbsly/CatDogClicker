@@ -1280,10 +1280,10 @@ MonoBehaviour:
   lootingEffiency: 0
   netWorth: 0
   treasuryText: {fileID: 569634419}
-  Upgrade1cost: 100
-  Upgrade2cost: 50
+  Upgrade1cost: 0
+  Upgrade2cost: 0
   Upgrade3cost: 0
-  TimeBetweenSpawns: 5.5
+  TimeBetweenSpawns: 0
 --- !u!4 &1626212619
 Transform:
   m_ObjectHideFlags: 0

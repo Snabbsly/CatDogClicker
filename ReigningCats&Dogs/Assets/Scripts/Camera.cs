@@ -13,12 +13,11 @@ public class Camera : MonoBehaviour
 
     bool movingRight = false;
     bool movingLeft = false;
-
     void Start()
     {
         startPos = transform.position;  
         targetPos = new Vector3(target, transform.position.y, transform.position.z);
-        leftButton.gameObject.SetActive(false);
+        leftButton.interactable = false;
     }
     void Update()
     {
@@ -30,10 +29,9 @@ public class Camera : MonoBehaviour
             {
                 transform.position = targetPos;
                 movingRight = false;
-                leftButton.gameObject.SetActive(true);
-                rightButton.gameObject.SetActive(false);
+                leftButton.interactable = true;
+                rightButton.interactable = false;
             }
-
         }
 
         if (movingLeft)
@@ -44,8 +42,8 @@ public class Camera : MonoBehaviour
             {
                 transform.position = startPos;
                 movingLeft = false;
-                leftButton.gameObject.SetActive(false);
-                rightButton.gameObject.SetActive(true);
+                leftButton.interactable = false;
+                rightButton.interactable = true;
             }
         }
     }

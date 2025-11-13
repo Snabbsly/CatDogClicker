@@ -26,6 +26,7 @@ public class King : MonoBehaviour
         {
             Debug.Log("This works");
             audioManager.PlaySound(0, 0);
+            audioManager.PlaySound(2, 2);
             StartCoroutine(SendTheTroops());
         }
     }

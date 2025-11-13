@@ -8,6 +8,7 @@ public class SoldierManager : MonoBehaviour
     [Header("Sprite par")]
     [SerializeField] Sprite[] hasNoLootSprites;
     [SerializeField] Sprite[] hasLootSprites;
+    [SerializeField] Transform transformSpwnPoint;
     ReturnLoot treasury;
 
     void Start()
@@ -21,7 +22,7 @@ public class SoldierManager : MonoBehaviour
         {
             Debug.Log("This works");
 
-            GameObject newSoldier = Instantiate(_soldier, transform.position, Quaternion.identity);
+            GameObject newSoldier = Instantiate(_soldier, transformSpwnPoint.position, Quaternion.identity);
 
             Soldier soldier = newSoldier.GetComponent<Soldier>();
             if (soldier == null)

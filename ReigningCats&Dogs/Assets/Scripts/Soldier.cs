@@ -27,12 +27,12 @@ public class Soldier : MonoBehaviour
     {
         if (!hasLoot)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.localScale *= 1;
             _rigidbody.linearVelocity = Vector2.right * moveSpeed;
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+           
             _rigidbody.linearVelocity = Vector2.left * moveSpeed;
         }
     }
@@ -42,6 +42,7 @@ public class Soldier : MonoBehaviour
         if (other.CompareTag("Loot"))
         {
             SetHasLoot(true);
+            transform.localScale = new Vector3(transform.localScale.x*-1, transform.localScale.y, transform.localScale.z);
         }
         else if (other.CompareTag("Base")) // lägg in så att man får pengar 
         {
@@ -54,9 +55,9 @@ public class Soldier : MonoBehaviour
     {
         this.hasLoot = hasLoot;
 
-        transform.position += new Vector3(0f, -2f, 0f);
-
         UpdateSprite();
+        transform.position += new Vector3(0f, -0.7f, 0f);
+
     }
 
     void UpdateSprite()
